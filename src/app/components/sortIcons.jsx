@@ -16,28 +16,28 @@ import Image from 'next/image'
 
 export const sortIcons = (icon)=>{
     if( icon == '01d'){
-        return <Image src = {clearDay} fill objectFit = 'contain'/>
+        return <Image alt = '' src = {clearDay} fill objectFit = 'contain'/>
     } else if( icon == '01n'){
-        return <Image src = {clearNight} fill objectFit = 'contain'/>
+        return <Image alt = '' src = {clearNight} fill objectFit = 'contain'/>
     } else if( icon == '02d'){
-        return <Image src = {fewCloudsDay} fill objectFit = 'contain'/>
+        return <Image alt = '' src = {fewCloudsDay} fill objectFit = 'contain'/>
     } else if( icon == '02n'){
-        return <Image src = {fewCloudsNight} fill objectFit = 'contain'/>
+        return <Image alt = '' src = {fewCloudsNight} fill objectFit = 'contain'/>
     } else if( icon == '03n'|| icon == '03d'){
-        return <Image src = {scatteredClouds} fill objectFit = 'contain'/>
+        return <Image alt = '' src = {scatteredClouds} fill objectFit = 'contain'/>
     } else if( icon == '04n'|| icon == '04d'){
-        return <Image src = {brokenClouds} fill objectFit = 'contain'/>
+        return <Image alt = '' src = {brokenClouds} fill objectFit = 'contain'/>
     } else if( icon == '09n'|| icon == '09d'){
-        return <Image src = {showerRain} fill objectFit = 'contain'/>
+        return <Image alt = '' src = {showerRain} fill objectFit = 'contain'/>
     } else if( icon == '10d'){
-        return <Image src = {rainyDay} fill objectFit = 'contain'/>
+        return <Image alt = '' src = {rainyDay} fill objectFit = 'contain'/>
     } else if( icon == '10n'){
-        return <Image src = {rainyNight} fill objectFit = 'contain'/>
+        return <Image alt = '' src = {rainyNight} fill objectFit = 'contain'/>
     } else if( icon == '11n'|| icon == '11d'){
-        return <Image src = {thunderStorm} fill objectFit = 'contain'/>
+        return <Image alt = '' src = {thunderStorm} fill objectFit = 'contain'/>
     } else if( icon == '13n'|| icon == '13d'){
-        return <Image src = {snow} fill objectFit = 'contain'/>
+        return <Image alt = '' src = {snow} fill objectFit = 'contain'/>
     } else if( icon == '50n'|| icon == '50d'){
-        return <Image src = {mist} fill objectFit = 'contain'/>
+        return <Image alt = '' src = {mist} fill objectFit = 'contain'/>
     }
 }
