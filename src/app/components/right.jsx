@@ -9,7 +9,7 @@ export default function RightComponent(){
 
     const GithubLink = ()=>(
         <a className = 'absolute right-3' href = 'https://github.com/Wafula-Austin/weather-dashboard' target = '_blank' rel = 'noopener noreferrer'>
-            <FaGithub size = {26} className = 'text-[#F5F5F5] hover:text-zinc-600/70'/>
+            <FaGithub size = {30} className = 'text-[#F5F5F5] hover:text-zinc-600/70'/>
         </a>
     )
     return(
