@@ -9,17 +9,19 @@ import { SearchContext } from '../Context/contextProvider'
 
 export default function Overview(){
 
-    const { search , searchState , setLoading , loading } = useContext(SearchContext)
+    const { search , searchState  } = useContext(SearchContext)
 
     useEffect(()=>{
         fetchForecastData()
     },[searchState])
 
+    const [ loading , setLoading ] = useState(false)
     const [ allData , setAllData ] = useState()
     const mainWeather = allData?.main
     const currentWind = allData?.wind
 
     const fetchForecastData = ()=>{
+      setLoading(false)
         try{
             axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${search}&units=metric&appid=d0fe71f74aabfae4b728cc6258356876`).then(
                 res=>setAllData(res.data),setLoading(true)
@@ -33,41 +35,52 @@ export default function Overview(){
     return(
         <div className = 'flex flex-col justify-start gap-y-3'>
             <h1 className = 'text-[#BFC1C5] font-semibold text-xl antialiased'>Today&apos;s Overview</h1>
-            {
-              loading ? 
               <div className = 'grid grid-cols-2 gap-4'>
-              <div className = 'flex items-center gap-x-2 p-8 md:p-6 bg-[#111B41] rounded-xl shadow-md shadow-zinc-900'>
-                  <TbWind size = {32} className = 'text-[#66CC00]'/>
-                  <span className = 'flex flex-col justify-start gap-y-1'>
-                      <h1 className = 'text-[#BFC1C5] font-semibold text-md'>Wind Speed</h1>
-                      <h1 className = 'font-semibold text-xl text-[#F5F5F5]'>{currentWind?.speed} km/h</h1>
-                  </span>
-              </div>
-              <div className = 'flex items-center gap-x-3 p-8 md:p-6 bg-[#111B41] rounded-xl shadow-md shadow-zinc-900'>
-                  <LuWaves size = {32} className = 'text-[#66CC00]'/>
-                  <span className = 'flex flex-col justify-start gap-y-1'>
-                      <h1 className = 'text-[#BFC1C5] font-semibold text-md'>Pressure</h1>
-                      <h1 className = 'font-semibold text-xl text-[#F5F5F5]'>{mainWeather?.pressure} pa</h1>
-                  </span>
-              </div>
-              <div className = 'flex items-center gap-x-2 p-8 md:p-6 bg-[#111B41] rounded-xl shadow-md shadow-zinc-900'>
-                  <FaTemperatureHalf size = {32} className = 'text-[#66CC00]'/>
-                  <span className = 'flex flex-col justify-start gap-y-1'>
-                      <h1 className = 'text-[#BFC1C5] font-semibold text-md'>Feels like</h1>
-                      <h1 className = 'font-semibold text-xl text-[#F5F5F5]'>{(mainWeather?.feels_like)?.toFixed(0)}&deg;C</h1>
-                  </span>
-              </div>
-              <div className = 'flex items-center gap-x-3 p-8 md:p-6 bg-[#111B41] rounded-xl shadow-md shadow-zinc-900'>
-                  <MdVisibility size = {32} className = 'text-[#66CC00]'/>
-                  <span className = 'flex flex-col justify-start gap-y-1'>
-                      <h1 className = 'text-[#BFC1C5] font-semibold text-md'>Visibility</h1>
-                      <h1 className = 'font-semibold text-xl text-[#F5F5F5]'>{(allData?.visibility)/1000} km</h1>
-                  </span>
-              </div>
+                {
+                  loading ?
+                  <div className = 'flex items-center gap-x-2 p-8 md:p-6 bg-[#111B41] rounded-xl shadow-md shadow-zinc-900'>
+                      <TbWind size = {32} className = 'text-[#66CC00]'/>
+                      <span className = 'flex flex-col justify-start gap-y-1'>
+                          <h1 className = 'text-[#BFC1C5] font-semibold text-md'>Wind Speed</h1>
+                          <h1 className = 'font-semibold text-xl text-[#F5F5F5]'>{currentWind?.speed} km/h</h1>
+                      </span>
+                  </div>
+                  : <div className = 'bg-[#192861]/60 w-[130px] h-[100px] md:w-[200px] md:h-[150px] rounded-xl animate-pulse'></div>
+                }
+                {
+                  loading ? 
+                  <div className = 'flex items-center gap-x-3 p-8 md:p-6 bg-[#111B41] rounded-xl shadow-md shadow-zinc-900'>
+                      <LuWaves size = {32} className = 'text-[#66CC00]'/>
+                      <span className = 'flex flex-col justify-start gap-y-1'>
+                          <h1 className = 'text-[#BFC1C5] font-semibold text-md'>Pressure</h1>
+                          <h1 className = 'font-semibold text-xl text-[#F5F5F5]'>{mainWeather?.pressure} pa</h1>
+                      </span>
+                  </div>
+                  : <div className = 'bg-[#192861]/60 w-[130px] h-[100px] md:w-[200px] md:h-[150px] rounded-xl animate-pulse'></div>
+                }
+                {
+                  loading ? 
+                  <div className = 'flex items-center gap-x-2 p-8 md:p-6 bg-[#111B41] rounded-xl shadow-md shadow-zinc-900'>
+                      <FaTemperatureHalf size = {32} className = 'text-[#66CC00]'/>
+                      <span className = 'flex flex-col justify-start gap-y-1'>
+                          <h1 className = 'text-[#BFC1C5] font-semibold text-md'>Feels like</h1>
+                          <h1 className = 'font-semibold text-xl text-[#F5F5F5]'>{(mainWeather?.feels_like)?.toFixed(0)}&deg;C</h1>
+                      </span>
+                  </div>
+                  : <div className = 'bg-[#192861]/60 w-[130px] h-[100px] md:w-[200px] md:h-[150px] rounded-xl animate-pulse'></div>
+                }
+                {
+                  loading ? 
+                  <div className = 'flex items-center gap-x-3 p-8 md:p-6 bg-[#111B41] rounded-xl shadow-md shadow-zinc-900'>
+                      <MdVisibility size = {32} className = 'text-[#66CC00]'/>
+                      <span className = 'flex flex-col justify-start gap-y-1'>
+                          <h1 className = 'text-[#BFC1C5] font-semibold text-md'>Visibility</h1>
+                          <h1 className = 'font-semibold text-xl text-[#F5F5F5]'>{(allData?.visibility)/1000} km</h1>
+                      </span>
+                  </div>
+                  : <div className = 'bg-[#192861]/60 w-[130px] h-[100px] md:w-[200px] md:h-[150px] rounded-xl animate-pulse'></div>
+                }
           </div>
-                 : <div></div>
-            }
-           
         </div>
     )
 }

@@ -7,17 +7,19 @@ import { sortIcons } from './sortIcons'
 import LiveClock from './dateTime'
 
 export default function Forecast(){
-    const { search , searchState , setLoading , loading } = useContext(SearchContext)
+    const { search , searchState} = useContext(SearchContext)
 
     useEffect(()=>{
         fetchForecastData()
     },[searchState])
 
+    const [ loading , setLoading ] = useState(false)
     const [ allData , setAllData ] = useState()
     const mainWeather = allData?.main
     const currentWeather = allData?.weather
 
     const fetchForecastData = ()=>{
+        setLoading(false)
         try{
             axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${search}&units=metric&appid=d0fe71f74aabfae4b728cc6258356876`).then(
                 res=>setAllData(res.data),setLoading(true)
@@ -64,7 +66,7 @@ export default function Forecast(){
                             <h1 className = 'antialiased text-[#F5F5F5] text-md font-semibold'>{allData?.name} , {allData?.sys?.country}</h1>
                         </span>
                     </div>
-                </div> : <div className = ''></div>
+                </div> : <div className = 'bg-[#192861]/60 w-[330px] h-[200px] md:w-[430px] md:h-[300px] rounded-xl animate-pulse'></div>
             }
             
         </div>

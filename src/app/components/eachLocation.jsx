@@ -2,8 +2,6 @@
 import { useState , useEffect , useContext } from 'react'
 import axios from 'axios'
 import { sortIcons } from './sortIcons'
-import {SearchContext} from '../Context/contextProvider'
-
 
 export default function EachLocation({location}){
 
@@ -11,8 +9,7 @@ export default function EachLocation({location}){
         fetchLocationData()
     },[])
 
-    const { setLoading } = useContext(SearchContext)
-    const api_key = process.env.WEATHER_API_KEY
+    const [ loading , setLoading ] = useState(false)
     const [ allData , setAllData ] = useState()
     const currentWeather = allData?.weather
     const mainWeather = allData?.main
@@ -23,7 +20,8 @@ export default function EachLocation({location}){
     }
     return(
             <div>
-              {       
+              {  
+              loading ?     
                 currentWeather?.map(
                     (current)=>(
                         <div key = {current?.id} className = 'cursor-pointer px-4 py-6 bg-[#192861] rounded-xl text-[#F5F5F5] flex flex-col'>
@@ -41,6 +39,7 @@ export default function EachLocation({location}){
                         </div>
                     )
                 )
+                : <div className = 'bg-[#192861]/60 w-[130px] h-[100px] md:w-[200px] md:h-[150px] rounded-xl animate-pulse'></div>
               }
         </div> 
           
