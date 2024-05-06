@@ -6,7 +6,7 @@ import FixedLocations from './fixedLocations'
 
 export default function LeftComponent(){
 
-    const { setSearch , setSearchState , searchState , loading } = useContext(SearchContext)
+    const { setSearch , setSearchState , searchState } = useContext(SearchContext)
    
     return(
         <div className = 'w-full h-screen bg-[#111B41] px-6 py-4 md:px-[40px] md:py-[24px] flex flex-col justify-start gap-3 md:gap-6'>
@@ -21,7 +21,7 @@ export default function LeftComponent(){
                         className = 'bg-[#192861] rounded-lg h-14 w-full pl-8 md:pl-10 placeholder:text-[#BFC1C5] text-slate-200 focus:outline-none'
                     />   
                 </div>
-                { loading ? <FixedLocations/> : <></>}
+                <FixedLocations/>
             </div>
         </div>
     )

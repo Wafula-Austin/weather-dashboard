@@ -19,8 +19,8 @@ export default function EachLocation({location}){
         .then(response=>setAllData(response.data) , setLoading(true))
     }
     return(
-            <div>
-              {  
+        <div>
+           {  
               loading ?     
                 currentWeather?.map(
                     (current)=>(
